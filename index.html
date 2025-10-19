@@ -4,17 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>BrewSpots — Find Your Perfect Cup in Pampanga</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-
-  <!-- Link to CSS -->
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="img/BrewSpots.png">
 </head>
 <body>
-  <div class="page">
+  <audio id="backgroundMusic" loop autoplay>
+    <source src="music/Coffee Jazz Music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-    <!-- Header -->
+  <div class="music-controls">
+    <button id="musicToggle" class="music-btn">🔇</button>
+  </div>
+
+  <div class="page">
     <header class="topbar" role="banner">
       <div class="brand">
         <div class="logo">
@@ -24,14 +28,12 @@
           <div class="heading">Find your perfect cup in Pampanga.</div>
         </div>
       </div>
-
       <nav class="nav" aria-label="Main navigation">
         <a href="index.html" class="active">Home</a>
         <a href="contact.html">Contact Us</a>
       </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="card" role="main" aria-labelledby="main-heading">
       <div class="intro">
         <div class="intro-text">
@@ -40,7 +42,6 @@
             Whether you're searching for a cozy cafe to study in, a stylish spot to hang out with friends,
             or a hidden gem serving specialty brews, our platform makes it easy to explore.
           </p>
-
           <ul class="bullets">
             <li>Browse cafés across Pampanga with photos, details, and ambiance.</li>
             <li>Find coffee shops near you with maps and directions.</li>
@@ -50,7 +51,6 @@
         </div>
       </div>
 
-      <!-- Café Grid -->
       <section class="tiles" aria-label="Coffee spots list">
         <article class="tile">
           <a href="singku.html" class="tile-link">
@@ -58,35 +58,30 @@
             <div class="meta"><h3 class="title">Singku Cafe</h3></div>
           </a>
         </article>
-
         <article class="tile">
           <a href="siglo.html" class="tile-link">
             <img class="image" src="img/Siglo Poblacion.webp" alt="Siglo Poblacion" />
             <div class="meta"><h3 class="title">Siglo Poblacion</h3></div>
           </a>
         </article>
-
         <article class="tile">
           <a href="hubspot.html" class="tile-link">
             <img class="image" src="img/Hubspot.webp" alt="Hubspot Coffee" />
             <div class="meta"><h3 class="title">Hubspot Coffee</h3></div>
           </a>
         </article>
-
         <article class="tile">
           <a href="losKomunidad.html" class="tile-link">
             <img class="image" src="img/Los Komunidad.webp" alt="Los Komunidad" />
             <div class="meta"><h3 class="title">Los Komunidad</h3></div>
           </a>
         </article>
-
         <article class="tile">
           <a href="kuwento.html" class="tile-link">
             <img class="image" src="img/Kuwento Cafe.webp" alt="Kuwento Cafe" />
             <div class="meta"><h3 class="title">Kuwento Cafe</h3></div>
           </a>
         </article>
-
         <article class="tile">
           <a href="twenty.html" class="tile-link">
             <img class="image" src="img/Twennty Four Café.webp" alt="Twenty Four Café" />
@@ -96,7 +91,6 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer" role="contentinfo">
       <div class="footer-left">BrewSpots@gmail.com</div>
       <div class="social">
@@ -112,5 +106,33 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let isPlaying = true;
+
+    musicToggle.addEventListener('click', function() {
+      if (isPlaying) {
+        backgroundMusic.pause();
+        musicToggle.textContent = '🔇';
+        isPlaying = false;
+      } else {
+        backgroundMusic.play();
+        musicToggle.textContent = '🔊';
+        isPlaying = true;
+      }
+    });
+
+    backgroundMusic.volume = 0.3;
+
+    document.addEventListener('click', function() {
+      if (backgroundMusic.paused && !isPlaying) {
+        backgroundMusic.play();
+        isPlaying = true;
+        musicToggle.textContent = '🔊';
+      }
+    });
+  </script>
 </body>
 </html>
