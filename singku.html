@@ -6,11 +6,19 @@
   <title>Singku Cafe — BrewSpots</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="img/BrewSpots.png">
 </head>
 <body>
-  <div class="page">
+  <audio id="backgroundMusic" loop autoplay>
+    <source src="music/Coffee Jazz Music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-    <!-- Header -->
+  <div class="music-controls">
+    <button id="musicToggle" class="music-btn">🔇</button>
+  </div>
+
+  <div class="page">
     <header class="topbar" role="banner">
       <div class="brand">
         <div class="logo">
@@ -20,17 +28,14 @@
           <div class="heading">Find your perfect cup in Pampanga.</div>
         </div>
       </div>
-
       <nav class="nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="contact.html">Contact Us</a>
       </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="card singku-card" role="main">
       <div class="cafe-page">
-        <!-- Cafe Header with Rooftop Image -->
         <div class="cafe-header">
           <div class="cafe-hero-image">
             <img src="img/SingkuRoofTop.jpg" alt="Singku Rooftop" class="hero-img">
@@ -41,15 +46,12 @@
           </div>
         </div>
 
-        <!-- Cafe Content -->
         <div class="cafe-content">
-          <!-- Left Column -->
           <div class="cafe-info">
             <div class="info-section">
               <h3 class="section-title">Location:</h3>
               <p class="section-text">5G Building, Nepomuceno Street, Barangay Santo Rosario, Angeles City, Pampanga</p>
             </div>
-
             <div class="info-section">
               <h3 class="section-title">Signature / Popular Drinks:</h3>
               <ul class="section-list">
@@ -59,14 +61,12 @@
                 <li>Other flavored / signature non-coffee options too</li>
               </ul>
             </div>
-
             <div class="info-section">
               <h3 class="section-title">Food / Menu Highlights:</h3>
               <p class="section-text">They serve a selection of rice meals, pasta, sandwiches, appetizers. Examples: Chicken Pesto Rice, Penne Chicken Alfredo, Fish Fillet, Sisig etc.</p>
             </div>
           </div>
 
-          <!-- Right Column -->
           <div class="cafe-details">
             <div class="info-section">
               <h3 class="section-title">Contact / Social:</h3>
@@ -76,7 +76,6 @@
                 Phone: +63 927 830 0173
               </p>
             </div>
-
             <div class="info-section">
               <h3 class="section-title">Business / Opening Hours:</h3>
               <p class="section-text">
@@ -85,7 +84,6 @@
                 Rooftop hours: 5:00 pm–12:00 am daily
               </p>
             </div>
-
             <div class="info-section">
               <h3 class="section-title">Ambiance / Vibe:</h3>
               <p class="section-text">
@@ -97,7 +95,6 @@
       </div>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer" role="contentinfo">
       <div class="footer-left">BrewSpots@gmail.com</div>
       <div class="social">
@@ -113,5 +110,33 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let isPlaying = true;
+
+    musicToggle.addEventListener('click', function() {
+      if (isPlaying) {
+        backgroundMusic.pause();
+        musicToggle.textContent = '🔇';
+        isPlaying = false;
+      } else {
+        backgroundMusic.play();
+        musicToggle.textContent = '🔊';
+        isPlaying = true;
+      }
+    });
+
+    backgroundMusic.volume = 0.3;
+
+    document.addEventListener('click', function() {
+      if (backgroundMusic.paused && !isPlaying) {
+        backgroundMusic.play();
+        isPlaying = true;
+        musicToggle.textContent = '🔊';
+      }
+    });
+  </script>
 </body>
 </html>
