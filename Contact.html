@@ -6,11 +6,19 @@
   <title>Contact Us — BrewSpots</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="img/BrewSpots.png">
 </head>
 <body>
-  <div class="page">
+  <audio id="backgroundMusic" loop autoplay>
+    <source src="music/Coffee Jazz Music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-    <!-- Header -->
+  <div class="music-controls">
+    <button id="musicToggle" class="music-btn">🔇</button>
+  </div>
+
+  <div class="page">
     <header class="topbar" role="banner">
       <div class="brand">
         <div class="logo">
@@ -20,45 +28,37 @@
           <div class="heading">Find your perfect cup in Pampanga.</div>
         </div>
       </div>
-
       <nav class="nav" aria-label="Main navigation">
         <a href="index.html">Home</a>
         <a href="contact.html" class="active">Contact Us</a>
       </nav>
     </header>
 
-    <!-- Main Content -->
     <main class="card" role="main">
       <div class="contact-container">
         <h1 class="contact-title">Contact Us</h1>
-        
         <form class="contact-form">
           <div class="form-group">
             <label for="firstName">First Name:</label>
             <input type="text" id="firstName" name="firstName" required>
           </div>
-          
           <div class="form-group">
             <label for="lastName">Last Name:</label>
             <input type="text" id="lastName" name="lastName" required>
           </div>
-          
           <div class="form-group">
             <label for="email">Email Address:</label>
             <input type="email" id="email" name="email" required>
           </div>
-          
           <div class="form-group">
             <label for="message">Message/Concern:</label>
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
-          
           <button type="submit" class="submit-btn">Contact Us</button>
         </form>
       </div>
     </main>
 
-    <!-- Footer -->
     <footer class="site-footer" role="contentinfo">
       <div class="footer-left">BrewSpots@gmail.com</div>
       <div class="social">
@@ -74,5 +74,33 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let isPlaying = true;
+
+    musicToggle.addEventListener('click', function() {
+      if (isPlaying) {
+        backgroundMusic.pause();
+        musicToggle.textContent = '🔇';
+        isPlaying = false;
+      } else {
+        backgroundMusic.play();
+        musicToggle.textContent = '🔊';
+        isPlaying = true;
+      }
+    });
+
+    backgroundMusic.volume = 0.3;
+
+    document.addEventListener('click', function() {
+      if (backgroundMusic.paused && !isPlaying) {
+        backgroundMusic.play();
+        isPlaying = true;
+        musicToggle.textContent = '🔊';
+      }
+    });
+  </script>
 </body>
 </html>
